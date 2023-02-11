@@ -6,9 +6,6 @@ import DMHome from './DM/DMHome';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const wontWork = () => {
-    console.log('hello');
-  };
   return (
     <>
       <Routes>
