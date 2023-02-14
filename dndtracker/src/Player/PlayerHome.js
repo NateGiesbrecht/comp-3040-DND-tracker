@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
+import PlayerNotes from './PlayerNotes';
 
 const PlayerHome = () => {
   return (
@@ -8,9 +9,12 @@ const PlayerHome = () => {
       <Typography variant="h1" align="center">
         Player Home
       </Typography>
-      <Button component={Link} to={'/'} variant="outlined">
-        Home
-      </Button>
+      <Container>
+        <Button component={Link} to={'/'} variant="outlined">
+          Home
+        </Button>
+        <PlayerNotes />
+      </Container>
     </>
   );
 };
