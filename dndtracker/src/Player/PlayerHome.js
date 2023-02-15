@@ -1,15 +1,23 @@
 import React from 'react';
 import { Button, Typography, Container } from '@mui/material';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import PlayerNotes from './PlayerNotes';
 import CharacterCards from './CharacterCards';
+import { Link } from 'react-router-dom';
+
 const PlayerHome = () => {
   return (
     <>
       <Typography variant="h1" align="center">
-        Player Home
+        Characters
       </Typography>
       <Container>
-        <Button component={Link} to={'/'} variant="outlined">
+        <Button
+          component={Link}
+          to={'/'}
+          variant="outlined"
+          sx={{ marginRight: '2%' }}
+        >
           Home
         </Button>
 

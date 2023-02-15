@@ -95,6 +95,7 @@ const CharacterCards = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
       <Grid
         container
         spacing={5}
