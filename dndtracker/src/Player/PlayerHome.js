@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Typography, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
-import PlayerNotes from './PlayerNotes';
-
+import CharacterCards from './CharacterCards';
 const PlayerHome = () => {
   return (
     <>
@@ -13,7 +12,11 @@ const PlayerHome = () => {
         <Button component={Link} to={'/'} variant="outlined">
           Home
         </Button>
-        <PlayerNotes />
+
+        <Button variant="outlined" sx={{ marginTop: '2%', marginBottom: '2%' }}>
+          Create New Character
+        </Button>
+        <CharacterCards />
       </Container>
     </>
   );

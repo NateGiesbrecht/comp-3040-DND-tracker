@@ -1,0 +1,15 @@
+export const classes = [
+  { className: 'Artificer' },
+  { className: 'Barbarian' },
+  { className: 'Bard' },
+  { className: 'Cleric' },
+  { className: 'Druid' },
+  { className: 'Fighter' },
+  { className: 'Monk' },
+  { className: 'Paladin' },
+  { className: 'Ranger' },
+  { className: 'Rogue' },
+  { className: 'Sorcerer' },
+  { className: 'Warlock' },
+  { className: 'Wizard' },
+];
