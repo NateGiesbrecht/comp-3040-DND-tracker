@@ -16,29 +16,53 @@ import { Link, useParams } from 'react-router-dom';
 
 import { characters } from '../Data/Characters';
 
-function useForceUpdate() {
-  const [, setValue] = useState(0); // integer state
-  return () => setValue((value) => value + 1); // update state to force render
-}
-
 export const PlayerNotes = () => {
+  const params = useParams();
+  const forceUpdate = useForceUpdate();
   const [note, setNote] = useState('');
-  const [index, setIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  function useForceUpdate() {
+    const [, setValue] = useState(0); // integer state
+    return () => setValue((value) => value + 1); // update state to force render
+  }
 
   const handleItemClick = (content, index) => {
     setNote(content);
-    setIndex(index);
+    if (selectedIndex === index) {
+      setSelectedIndex(-1);
+    } else {
+      setSelectedIndex(index);
+      setNote(content);
+    }
   };
 
   const handleSave = () => {
-    character.notes[index].content = note;
+    character.notes[selectedIndex].content = note;
   };
-
-  const params = useParams();
 
   const character = characters.find(
     (element) => element.id === params.playerID
   );
+
+  const handleClickNewNote = () => {
+    const today = getTodaysDate();
+    character.notes.push({ content: '', date: today });
+    handleItemClick(
+      character.notes[character.notes.length - 1].content,
+      character.notes.length - 1
+    );
+    forceUpdate();
+  };
+
+  const handleClickDeleteNote = (index) => {
+    character.notes.splice(index, 1);
+    setNote('');
+    if (index === selectedIndex) {
+      setSelectedIndex(-1);
+    }
+    forceUpdate();
+  };
 
   const getTodaysDate = () => {
     var today = new Date();
@@ -56,8 +80,6 @@ export const PlayerNotes = () => {
     today = yyyy + '-' + mm + '-' + dd;
     return today;
   };
-
-  const forceUpdate = useForceUpdate();
   return (
     <>
       <Typography variant="h1" align="center">
@@ -81,6 +103,7 @@ export const PlayerNotes = () => {
                   onClick={() => handleItemClick(note.content, index)}
                   sx={{
                     cursor: 'pointer',
+                    backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
                     '&:hover': {
                       backgroundColor: '#f5f5f5',
                     },
@@ -92,8 +115,7 @@ export const PlayerNotes = () => {
                   />
                   <ListItemIcon
                     onClick={() => {
-                      character.notes.splice(index, 1);
-                      forceUpdate();
+                      handleClickDeleteNote(index);
                     }}
                   >
                     <Delete />
@@ -102,10 +124,7 @@ export const PlayerNotes = () => {
               ))}
               <ListItem
                 onClick={() => {
-                  console.log('new note');
-                  const today = getTodaysDate();
-                  character.notes.push({ content: '', date: today });
-                  forceUpdate();
+                  handleClickNewNote();
                 }}
                 sx={{
                   cursor: 'pointer',
@@ -122,25 +141,35 @@ export const PlayerNotes = () => {
             </List>
           </Grid>
           <Grid item xs={8}>
-            <TextField
-              fullWidth
-              sx={{
-                marginTop: '2%',
-              }}
-              label="Write your note"
-              variant="outlined"
-              multiline
-              rows={10}
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-            />
-            <Button
-              variant="contained"
-              onClick={handleSave}
-              sx={{ marginTop: '2%' }}
-            >
-              Save
-            </Button>
+            {selectedIndex === -1 ? (
+              <Typography sx={{ marginLeft: '2%' }} variant="p">
+                {' '}
+                Select a note to view...
+              </Typography>
+            ) : (
+              <>
+                <TextField
+                  fullWidth
+                  sx={{
+                    marginTop: '2%',
+                    marginLeft: '2%',
+                  }}
+                  label="Write your note"
+                  variant="outlined"
+                  multiline
+                  rows={10}
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  onClick={handleSave}
+                  sx={{ marginTop: '2%', marginLeft: '2%' }}
+                >
+                  Save
+                </Button>{' '}
+              </>
+            )}
           </Grid>
         </Grid>
       </Container>
