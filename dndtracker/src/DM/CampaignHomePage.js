@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { campaigns } from '../Data/Campaigns';
 import { useParams } from 'react-router-dom';
-import { DialogTitle, Drawer, IconButton, Grid } from '@mui/material';
+import {
+  DialogTitle,
+  Drawer,
+  IconButton,
+  Grid,
+  Typography,
+} from '@mui/material';
+
+import { Link } from 'react-router-dom';
 
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -9,13 +17,29 @@ import ListItem from '@mui/material/ListItem';
 
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+
+//Icons
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ReorderIcon from '@mui/icons-material/Reorder';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import PetsIcon from '@mui/icons-material/Pets';
+import NearbyErrorIcon from '@mui/icons-material/NearbyError';
+import HomeIcon from '@mui/icons-material/Home';
+import GradingIcon from '@mui/icons-material/Grading';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import CampaignNotes from './CampaignNotes';
+import CampaignCharacterPage from './CampaignCharacterPage';
+import CampaignCitiesPage from './CampaignCitiesPage';
+import CampaignDungeonPage from './CampaignDungeonPage';
+import CampaignMonstersPage from './CampaignMonstersPage';
 
 export const CampaignHomePage = () => {
   const params = useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [componentDisplay, setComponentDisplay] = useState('notes');
+
+  //const screen_height = window.innerHeight;
   const campaign = campaigns.find(
     (element) => element.id === params.campaignID
   );
@@ -24,9 +48,31 @@ export const CampaignHomePage = () => {
     setDrawerOpen(false);
   };
 
+  const componentToDisplay = (param) => {
+    switch (param) {
+      case 'notes':
+        return <CampaignNotes campaign={campaign} />;
+      case 'cities':
+        return <CampaignCitiesPage />;
+      case 'characters':
+        return <CampaignCharacterPage />;
+      case 'monsters':
+        return <CampaignMonstersPage />;
+      case 'dungeons':
+        return <CampaignDungeonPage />;
+    }
+  };
+
   return (
     <div>
-      <Drawer anchor="left" open={drawerOpen} onClose={onClose}>
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={onClose}
+        PaperProps={{
+          sx: { width: '15%' },
+        }}
+      >
         <DialogTitle disableTypography className="drawerTitle">
           <IconButton onClick={onClose}>
             <ArrowBackIosIcon />
@@ -37,15 +83,15 @@ export const CampaignHomePage = () => {
             <label>Navigation</label>
             <Divider sx={{ borderBottomWidth: 2 }} />
           </Grid>
-          <ListItem button>
+          <ListItem component={Link} to={'/'} sx={{ color: '#000000' }}>
             <ListItemIcon>
-              <InboxIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Home" />
           </ListItem>
-          <ListItem button>
+          <ListItem component={Link} to={'/DM'} sx={{ color: '#000000' }}>
             <ListItemIcon>
-              <InboxIcon />
+              <GradingIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Campaigns" />
           </ListItem>
@@ -54,28 +100,33 @@ export const CampaignHomePage = () => {
             <label>Tools</label>
             <Divider sx={{ borderBottomWidth: 2 }} />
           </Grid>
-
-          <ListItem button>
+          <ListItem button onClick={() => setComponentDisplay('notes')}>
             <ListItemIcon>
-              <InboxIcon />
+              <NewspaperIcon />
+            </ListItemIcon>
+            <ListItemText disableTypography primary="Notes" />
+          </ListItem>
+          <ListItem button onClick={() => setComponentDisplay('characters')}>
+            <ListItemIcon>
+              <GroupAddIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Characters" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => setComponentDisplay('cities')}>
             <ListItemIcon>
-              <InboxIcon />
+              <LocationCityIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Cities" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => setComponentDisplay('dungeons')}>
             <ListItemIcon>
-              <InboxIcon />
+              <NearbyErrorIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Dungeons" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={() => setComponentDisplay('monsters')}>
             <ListItemIcon>
-              <InboxIcon />
+              <PetsIcon />
             </ListItemIcon>
             <ListItemText disableTypography primary="Monsters" />
           </ListItem>
@@ -90,7 +141,11 @@ export const CampaignHomePage = () => {
       >
         <ReorderIcon />
       </IconButton>
-      <p>{campaign.name}</p>
+      <Typography variant="h1" align="center">
+        {campaign.name}
+      </Typography>
+      {/* Screen contents */}
+      {componentToDisplay(componentDisplay)}
     </div>
   );
 };

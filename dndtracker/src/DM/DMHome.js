@@ -22,13 +22,13 @@ const DMHome = () => {
         <DMHomeCard
           image={campaigns[0].photo}
           body={campaigns[0].description}
-          title="Campaign 1"
+          title={campaigns[0].name}
           campaignID={campaigns[0].id}
         />
         <DMHomeCard
           image={campaigns[1].photo}
           body={campaigns[1].description}
-          title="Campaign 2"
+          title={campaigns[1].name}
           campaignID={campaigns[1].id}
         />
         <DMNewCampaignCard />
