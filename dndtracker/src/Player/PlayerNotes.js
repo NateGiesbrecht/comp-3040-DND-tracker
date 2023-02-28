@@ -13,7 +13,7 @@ import {
 import { Delete } from '@mui/icons-material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link, useParams } from 'react-router-dom';
-
+import Inventory from './Inventory';
 import { characters } from '../Data/Characters';
 
 export const PlayerNotes = () => {
@@ -21,6 +21,7 @@ export const PlayerNotes = () => {
   const forceUpdate = useForceUpdate();
   const [note, setNote] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [openInventory, setOpenInventory] = useState(false);
 
   function useForceUpdate() {
     const [, setValue] = useState(0); // integer state
@@ -80,12 +81,27 @@ export const PlayerNotes = () => {
     today = yyyy + '-' + mm + '-' + dd;
     return today;
   };
+
+  const handleCloseInventory = () => {
+    setOpenInventory(false);
+  };
+
+  const handleOpenInventory = () => {
+    setOpenInventory(true);
+  };
   return (
     <>
+      <Inventory
+        open={openInventory}
+        handleClose={handleCloseInventory}
+        character={character}
+      />
       <Typography variant="h1" align="center">
         {character.name}
       </Typography>
+
       <Container>
+        <TextField fullWidth label="Search" sx={{ marginBottom: '1%' }} />
         <Button
           component={Link}
           to={'/'}
@@ -93,6 +109,15 @@ export const PlayerNotes = () => {
           sx={{ marginRight: '2%' }}
         >
           Home
+        </Button>
+        <Button
+          onClick={() => {
+            handleOpenInventory();
+          }}
+          variant="outlined"
+          sx={{ marginRight: '2%' }}
+        >
+          Inventory
         </Button>
         <Grid container>
           <Grid item xs={4}>

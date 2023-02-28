@@ -16,13 +16,9 @@ const PlayerHome = () => {
           component={Link}
           to={'/'}
           variant="outlined"
-          sx={{ marginRight: '2%' }}
+          sx={{ marginRight: '2%', marginBottom: '2%' }}
         >
           Home
-        </Button>
-
-        <Button variant="outlined" sx={{ marginTop: '2%', marginBottom: '2%' }}>
-          Create New Character
         </Button>
         <CharacterCards />
       </Container>
