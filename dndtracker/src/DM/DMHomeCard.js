@@ -7,13 +7,14 @@ import {
   CardContent,
   Typography,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const DMHomeCard = (params) => {
-  const { title, body, image } = params;
+  const { title, body, image, campaignID } = params;
   return (
     <Paper>
       <Card sx={{ marginTop: '2%', width: '100%' }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to={`/DM/${campaignID}`}>
           <CardMedia
             component="img"
             height="140"

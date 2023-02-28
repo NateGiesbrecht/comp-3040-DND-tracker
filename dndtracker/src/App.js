@@ -4,6 +4,7 @@ import Home from './Home';
 import PlayerHome from './Player/PlayerHome';
 import DMHome from './DM/DMHome';
 import PlayerNotes from './Player/PlayerNotes';
+import CampaignHomePage from './DM/CampaignHomePage';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/Player" element={<PlayerHome />} />
         <Route exact path="/DM" element={<DMHome />} />
         <Route exact path="/Player/:playerID" element={<PlayerNotes />} />
+        <Route exact path="/DM/:campaignID" element={<CampaignHomePage />} />
       </Routes>
     </>
   );
