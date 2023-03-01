@@ -9,19 +9,23 @@ import {
   Button,
   Grid,
   ListItemIcon,
+  IconButton,
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link, useParams } from 'react-router-dom';
 import Inventory from './Inventory';
 import { characters } from '../Data/Characters';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const PlayerNotes = () => {
   const params = useParams();
   const forceUpdate = useForceUpdate();
   const [note, setNote] = useState('');
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const [openInventory, setOpenInventory] = useState(false);
+  const [search, setSearch] = useState('');
+  const [matchedIndexes, setMatchedIndexes] = useState([]);
 
   function useForceUpdate() {
     const [, setValue] = useState(0); // integer state
@@ -89,6 +93,35 @@ export const PlayerNotes = () => {
   const handleOpenInventory = () => {
     setOpenInventory(true);
   };
+
+  const handleSearch = () => {
+    console.log('Searching for: ', search);
+    console.log('inside : ', character.notes);
+    const matches = [];
+    for (let i = 0; i < character.notes.length; i++) {
+      console.log(character.notes[i].content);
+      console.log(character.notes[i].content.includes(search));
+      if (character.notes[i].content.includes(search)) {
+        console.log('here');
+        matches.push(i);
+      }
+    }
+    console.log('matches', matches);
+    setMatchedIndexes([...matches]);
+  };
+
+  const selectColor = (index) => {
+    if (matchedIndexes.includes(index)) {
+      return '#FEFF9D';
+    } else {
+      return index === selectedIndex ? '#f5f5f5' : '';
+    }
+  };
+
+  const handleClearClick = () => {
+    setSearch('');
+    setMatchedIndexes([]);
+  };
   return (
     <>
       <Inventory
@@ -101,7 +134,29 @@ export const PlayerNotes = () => {
       </Typography>
 
       <Container>
-        <TextField fullWidth label="Search" sx={{ marginBottom: '1%' }} />
+        <TextField
+          fullWidth
+          label="Search"
+          sx={{ marginBottom: '1%' }}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          InputProps={{
+            endAdornment: (
+              <>
+                <Button onClick={handleSearch}>Search</Button>
+                <IconButton
+                  sx={{ visibility: 'visible' }}
+                  onClick={handleClearClick}
+                >
+                  <ClearIcon />
+                </IconButton>
+              </>
+            ),
+          }}
+        />
+
         <Button
           component={Link}
           to={'/'}
@@ -121,49 +176,55 @@ export const PlayerNotes = () => {
         </Button>
         <Grid container>
           <Grid item xs={4}>
-            <List>
-              {character.notes.map((note, index) => (
+            <Container
+              style={{ maxHeight: '485px', overflow: 'auto' }}
+              disableGutters
+            >
+              <List>
+                {character.notes.map((note, index) => (
+                  <ListItem
+                    key={note.id}
+                    onClick={() => handleItemClick(note.content, index)}
+                    sx={{
+                      cursor: 'pointer',
+                      backgroundColor: selectColor(index),
+                      //backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
+                      '&:hover': {
+                        backgroundColor: '#f5f5f5',
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      primary={character.name}
+                      secondary={note.date}
+                    />
+                    <ListItemIcon
+                      onClick={() => {
+                        handleClickDeleteNote(index);
+                      }}
+                    >
+                      <Delete />
+                    </ListItemIcon>
+                  </ListItem>
+                ))}
                 <ListItem
-                  key={note.id}
-                  onClick={() => handleItemClick(note.content, index)}
+                  onClick={() => {
+                    handleClickNewNote();
+                  }}
                   sx={{
                     cursor: 'pointer',
-                    backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
                     '&:hover': {
                       backgroundColor: '#f5f5f5',
                     },
                   }}
                 >
-                  <ListItemText
-                    primary={character.name}
-                    secondary={note.date}
-                  />
-                  <ListItemIcon
-                    onClick={() => {
-                      handleClickDeleteNote(index);
-                    }}
-                  >
-                    <Delete />
+                  <ListItemText primary="Add a new note" />
+                  <ListItemIcon>
+                    <AddCircleOutlineIcon />
                   </ListItemIcon>
                 </ListItem>
-              ))}
-              <ListItem
-                onClick={() => {
-                  handleClickNewNote();
-                }}
-                sx={{
-                  cursor: 'pointer',
-                  '&:hover': {
-                    backgroundColor: '#f5f5f5',
-                  },
-                }}
-              >
-                <ListItemText primary="Add a new note" />
-                <ListItemIcon>
-                  <AddCircleOutlineIcon />
-                </ListItemIcon>
-              </ListItem>
-            </List>
+              </List>
+            </Container>
           </Grid>
           <Grid item xs={8}>
             {selectedIndex === -1 ? (
@@ -182,17 +243,13 @@ export const PlayerNotes = () => {
                   label="Write your note"
                   variant="outlined"
                   multiline
-                  rows={10}
+                  rows={19}
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
+                  onBlur={() => {
+                    handleSave();
+                  }}
                 />
-                <Button
-                  variant="contained"
-                  onClick={handleSave}
-                  sx={{ marginTop: '2%', marginLeft: '2%' }}
-                >
-                  Save
-                </Button>{' '}
               </>
             )}
           </Grid>
