@@ -38,6 +38,7 @@ export const CampaignHomePage = () => {
   const params = useParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [componentDisplay, setComponentDisplay] = useState('notes');
+  const [indexToUse, setIndexToUse] = useState(0);
 
   //const screen_height = window.innerHeight;
   const campaign = campaigns.find(
@@ -48,14 +49,31 @@ export const CampaignHomePage = () => {
     setDrawerOpen(false);
   };
 
+  const onChange = (component, index) => {
+    setIndexToUse(index);
+    setComponentDisplay(component);
+  };
+
   const componentToDisplay = (param) => {
     switch (param) {
       case 'notes':
         return <CampaignNotes campaign={campaign} />;
       case 'cities':
-        return <CampaignCitiesPage />;
+        return (
+          <CampaignCitiesPage
+            campaign={campaign}
+            indexToUse={indexToUse}
+            componentToDisplay={onChange}
+          />
+        );
       case 'characters':
-        return <CampaignCharacterPage />;
+        return (
+          <CampaignCharacterPage
+            campaign={campaign}
+            componentToDisplay={onChange}
+            indexToUse={indexToUse}
+          />
+        );
       case 'monsters':
         return <CampaignMonstersPage />;
       case 'dungeons':
@@ -78,7 +96,7 @@ export const CampaignHomePage = () => {
             <ArrowBackIosIcon />
           </IconButton>
         </DialogTitle>
-        <List component="nav" aria-label="main mailbox folders">
+        <List component="nav">
           <Grid item xs={10} sx={{ py: 2, px: 2, fontSize: 13 }}>
             <label>Navigation</label>
             <Divider sx={{ borderBottomWidth: 2 }} />

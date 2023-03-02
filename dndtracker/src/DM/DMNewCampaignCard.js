@@ -13,7 +13,13 @@ export const DMNewCampaignCard = () => {
   return (
     <Paper>
       <Card sx={{ marginTop: '2%', width: '100%' }}>
-        <CardActionArea>
+        <CardActionArea
+          onClick={() => {
+            alert(
+              'Under development. New Campaign functionality not currently available.'
+            );
+          }}
+        >
           <CardContent>
             <Stack direction="row" alignItems="center" gap={1}>
               <AddCircleOutlineIcon />
