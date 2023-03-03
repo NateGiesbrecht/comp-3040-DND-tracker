@@ -78,6 +78,8 @@ export const campaigns = [
       {
         id: 0,
         name: 'Balor',
+        story: '',
+        bio: '',
         avatar:
           'https://cdn2.inkarnate.com/cdn-cgi/image/width=1800,height=1400/https://inkarnate-api-as-production.s3.amazonaws.com/yxa3kz0ew0ca5ej5995wq420hyl6',
         linkedCharacters: [],
@@ -85,6 +87,8 @@ export const campaigns = [
       {
         id: 1,
         name: 'Stormhelm',
+        story: '',
+        bio: '',
         avatar:
           'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f5ab51c-73d8-4949-9282-9e2c1c5b565e/daryx9b-ac73b464-e1c4-4b07-bc82-55388080f1c8.png/v1/fill/w_1024,h_767,q_80,strp/rabanastre___dnd_city_map_by_madwing_daryx9b-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY3IiwicGF0aCI6IlwvZlwvNWY1YWI1MWMtNzNkOC00OTQ5LTkyODItOWUyYzFjNWI1NjVlXC9kYXJ5eDliLWFjNzNiNDY0LWUxYzQtNGIwNy1iYzgyLTU1Mzg4MDgwZjFjOC5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.TLlvx5ZxlZDLvR532fmwK1hkAn23cNavyUD3oj9ewiM',
         linkedCharacters: [5],
@@ -92,6 +96,8 @@ export const campaigns = [
       {
         id: 2,
         name: 'Blinko Town',
+        story: '',
+        bio: '',
         avatar:
           'https://i0.wp.com/www.fantasticmaps.com/wp-content/uploads/2012/02/redwallwebres-1.jpg?resize=640%2C828',
         linkedCharacters: [],
@@ -99,6 +105,8 @@ export const campaigns = [
       {
         id: 3,
         name: 'Brighton',
+        story: '',
+        bio: '',
         avatar:
           'https://i.seadn.io/gae/bdp_7I4nqItBKberQxtsy3YZCFgsxTlhblXpnaK63WUxh7iBx9APvX8cYzCjNSzgpFJiLU1Dqyi5d-VZKzz_YLpDEZ5VggkctEFhlEc?auto=format&w=1400&fr=1',
         linkedCharacters: [2],
@@ -122,10 +130,29 @@ export const campaigns = [
     photo:
       'https://www.colorwallpapers.com/uploads/wallpaper/dnd-wallpapers/width-853/9wBK7PK3k59A-dnd-beautiful-hd-desktop-wallpapers.jpg',
     characters: [
-      { id: 1, name: 'Tasha' },
-      { id: 2, name: 'Karlach' },
+      {
+        id: 0,
+        name: 'Mylo',
+        avatar:
+          'https://d.furaffinity.net/art/corelle-vairel/1589238081/1589238081.corelle-vairel_snskh.jpg',
+        linkedCharacters: [],
+        linkedCities: [],
+        bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+        story:
+          'Diam maecenas sed enim ut sem viverra. Dolor sit amet consectetur adipiscing elit ut aliquam purus sit. In mollis nunc sed id. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Etiam tempor orci eu lobortis elementum nibh tellus molestie nunc. Eros donec ac odio tempor. Nulla facilisi nullam vehicula ipsum. Odio morbi quis commodo odio aenean sed adipiscing. Justo eget magna fermentum iaculis eu non. Ut lectus arcu bibendum at varius vel. Quisque egestas diam in arcu cursus euismod quis. Arcu cursus vitae congue mauris rhoncus. Maecenas accumsan lacus vel facilisis. Fermentum posuere urna nec tincidunt. At erat pellentesque adipiscing commodo elit at.',
+      },
     ],
-    cities: [{ id: 1, name: 'Balor' }],
+    cities: [
+      {
+        id: 3,
+        name: 'Brighton',
+        story: '',
+        bio: '',
+        avatar:
+          'https://i.seadn.io/gae/bdp_7I4nqItBKberQxtsy3YZCFgsxTlhblXpnaK63WUxh7iBx9APvX8cYzCjNSzgpFJiLU1Dqyi5d-VZKzz_YLpDEZ5VggkctEFhlEc?auto=format&w=1400&fr=1',
+        linkedCharacters: [],
+      },
+    ],
     monsters: [],
     dungeons: [],
     storyNotes:
