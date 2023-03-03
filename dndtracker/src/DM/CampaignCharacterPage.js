@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Typography,
   Grid,
@@ -18,6 +18,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const CampaignCharacterPage = (props) => {
   const { campaign, componentToDisplay, indexToUse } = props;
   const [selectedIndex, setSelectedIndex] = useState(indexToUse ?? 0);
+  const [bio, setBio] = useState('');
+  const [story, setStory] = useState('');
 
   const handleItemClick = (index) => {
     //setNote(content);
@@ -25,6 +27,22 @@ const CampaignCharacterPage = (props) => {
       setSelectedIndex(index);
     } else {
       setSelectedIndex(index);
+    }
+  };
+
+  useEffect(() => {
+    setStory(campaign.characters[selectedIndex].story);
+    setBio(campaign.characters[selectedIndex].bio);
+  }, [selectedIndex]);
+
+  const handleOnBlur = (e, type) => {
+    switch (type) {
+      case 'bio':
+        campaign.characters[selectedIndex].bio = e.target.value;
+        break;
+      case 'story':
+        campaign.characters[selectedIndex].story = e.target.value;
+        break;
     }
   };
   return (
@@ -93,7 +111,7 @@ const CampaignCharacterPage = (props) => {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              sx={{ marginBottom: '15%' }}
+              sx={{ marginBottom: '60px' }}
             >
               <Stack>
                 <Avatar
@@ -165,10 +183,10 @@ const CampaignCharacterPage = (props) => {
           <Stack
             spacing={1}
             flex="1 1 0"
-            sx={{ marginTop: '1%', marginLeft: '5%' }}
+            sx={{ marginTop: '2%', marginLeft: '5%' }}
           >
             <Typography variant="h4" align="center">
-              Linked Dungeons & Cities
+              Dungeons & Cities
             </Typography>
             <Box fullWidth sx={{ border: 1, height: '325px' }}>
               <List fullWidth>
@@ -191,11 +209,7 @@ const CampaignCharacterPage = (props) => {
                       <ListItemText
                         primary={campaign.cities[linkedCity].name}
                       />
-                      <ListItemIcon
-                      // onClick={() => {
-                      //   handleClickDeleteNote(index);
-                      // }}
-                      >
+                      <ListItemIcon>
                         <Delete />
                       </ListItemIcon>
                     </ListItem>
@@ -226,21 +240,17 @@ const CampaignCharacterPage = (props) => {
               fullWidth
               multiline
               rows={13}
-              value={campaign.characters[selectedIndex].bio}
-              // onChange={(e) => setStoryNotes(e.target.value)}
-              // onBlur={(e) => {
-              //   handleOnBlur(e, 'story');
-              // }}
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              onBlur={(e) => {
+                handleOnBlur(e, 'bio');
+              }}
             />
           </Stack>
         </Grid>
 
-        <Grid container item xs={12} sm={5} lg={4}>
-          <Stack
-            spacing={1}
-            flex="1 1 0"
-            sx={{ marginBottom: '0%', marginRight: '5%' }}
-          >
+        <Grid container item xs={12} sm={7} lg={3}>
+          <Stack spacing={1} flex="1 1 0" sx={{ marginBottom: '0%' }}>
             <Typography variant="h4" align="center">
               Story
             </Typography>
@@ -248,12 +258,12 @@ const CampaignCharacterPage = (props) => {
               fullWidth
               multiline
               rows={30}
-              sx={{ marginTop: '0%', marginRight: '5%' }}
-              value={campaign.characters[selectedIndex].story}
-              // onChange={(e) => setWorldStory(e.target.value)}
-              // onBlur={(e) => {
-              //   handleOnBlur(e, 'world');
-              // }}
+              sx={{ marginTop: '0%' }}
+              value={story}
+              onChange={(e) => setStory(e.target.value)}
+              onBlur={(e) => {
+                handleOnBlur(e, 'world');
+              }}
             />
           </Stack>
         </Grid>
