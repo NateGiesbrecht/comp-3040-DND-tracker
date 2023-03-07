@@ -36,7 +36,7 @@ import CampaignMonstersPage from './CampaignMonstersPage';
 
 export const CampaignHomePage = () => {
   const params = useParams();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   const [componentDisplay, setComponentDisplay] = useState('notes');
   const [indexToUse, setIndexToUse] = useState(0);
 
