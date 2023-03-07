@@ -100,8 +100,12 @@ export const PlayerNotes = () => {
     const matches = [];
     for (let i = 0; i < character.notes.length; i++) {
       console.log(character.notes[i].content);
-      console.log(character.notes[i].content.includes(search));
-      if (character.notes[i].content.includes(search)) {
+      console.log(
+        character.notes[i].content.toLowerCase().includes(search.toLowerCase())
+      );
+      if (
+        character.notes[i].content.toLowerCase().includes(search.toLowerCase())
+      ) {
         console.log('here');
         matches.push(i);
       }
