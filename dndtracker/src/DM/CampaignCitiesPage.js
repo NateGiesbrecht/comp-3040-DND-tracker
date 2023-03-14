@@ -43,6 +43,89 @@ const CampaignCitiesPage = (props) => {
         break;
     }
   };
+
+  const LinkedCharactersJSX = (characterToDisplay) => {
+    return (
+      <>
+        <Divider sx={{ marginTop: '5%' }} />
+        <Grid container spacing={1}>
+          <Grid xs={12} lg={2}>
+            <Grid item xs={12} sx={{ px: 2 }}></Grid>
+            <Grid item xs={12}></Grid>
+          </Grid>
+          <Grid container xs={12} sm={7} lg={3}>
+            <Stack
+              spacing={1}
+              flex="1 1 0"
+              sx={{ marginTop: '1%', marginLeft: '5%' }}
+            >
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                sx={{ marginBottom: '60px' }}
+              >
+                <Stack>
+                  <Avatar
+                    src={campaign.characters[characterToDisplay].avatar}
+                    sx={{
+                      width: 250,
+                      height: 250,
+                      marginTop: '15%',
+                    }}
+                  />
+                  <Typography align="center" variant="h5">
+                    {campaign.characters[characterToDisplay].name}
+                  </Typography>
+                </Stack>
+              </Box>
+            </Stack>
+          </Grid>
+          <Grid container xs={12} sm={7} lg={3}>
+            <Stack
+              spacing={1}
+              flex="1 1 0"
+              sx={{ marginTop: '2%', marginLeft: '5%' }}
+            >
+              <Typography variant="h4" align="center">
+                Bio
+              </Typography>
+              <TextField
+                fullWidth
+                multiline
+                rows={30}
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                onBlur={(e) => {
+                  handleOnBlur(e, 'bio');
+                }}
+              />
+            </Stack>
+          </Grid>
+
+          <Grid container item xs={12} sm={7} lg={3}>
+            <Stack spacing={1} flex="1 1 0" sx={{ marginBottom: '0%' }}>
+              <Typography variant="h4" align="center">
+                Story
+              </Typography>
+              <TextField
+                fullWidth
+                multiline
+                rows={30}
+                sx={{ marginTop: '0%' }}
+                value={story}
+                onChange={(e) => setStory(e.target.value)}
+                onBlur={(e) => {
+                  handleOnBlur(e, 'world');
+                }}
+              />
+            </Stack>
+          </Grid>
+        </Grid>
+      </>
+    );
+  };
+
   return (
     <>
       <Grid container spacing={1}>
@@ -56,46 +139,30 @@ const CampaignCitiesPage = (props) => {
               {campaign.cities.map((city, index) => (
                 <ListItem
                   key={city.id}
-                  // onClick={() => handleItemClick(index)}
-                  // sx={{
-                  //   cursor: 'pointer',
-                  //   backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
-                  //   '&:hover': {
-                  //     backgroundColor: '#f5f5f5',
-                  //   },
-                  // }}
+                  onClick={() => handleItemClick(index)}
+                  sx={{
+                    cursor: 'pointer',
+                    backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
+                    '&:hover': {
+                      backgroundColor: '#f5f5f5',
+                    },
+                  }}
                 >
                   <ListItemText
                     primary={city.name}
                     //primary={character.name}
                   />
                   <ListItemIcon
-                  // onClick={() => {
-                  //   alert(
-                  //     'Deleting Linked Dungeons currently under development'
-                  //   );
-                  // }}
+                    onClick={() => {
+                      alert(
+                        'Deleting Linked Dungeons currently under development'
+                      );
+                    }}
                   >
-                    {/* <Delete /> */}
+                    <Delete />
                   </ListItemIcon>
                 </ListItem>
               ))}
-              {/* <ListItem
-                onClick={() => {
-                  alert('Adding new cities is currently under development');
-                }}
-                sx={{
-                  cursor: 'pointer',
-                  '&:hover': {
-                    backgroundColor: '#f5f5f5',
-                  },
-                }}
-              >
-                <ListItemText primary="Add a new city" />
-                <ListItemIcon>
-                  <AddCircleOutlineIcon />
-                </ListItemIcon>
-              </ListItem> */}
             </List>
           </Grid>
         </Grid>
@@ -125,59 +192,6 @@ const CampaignCitiesPage = (props) => {
                 </Typography>
               </Stack>
             </Box>
-            <Typography variant="h4" align="center">
-              NPCs
-            </Typography>
-            <Box fullWidth sx={{ border: 1, height: '325px' }}>
-              <List fullWidth>
-                {campaign.cities[selectedIndex].linkedCharacters.map(
-                  (linkedNpc, index) => (
-                    <ListItem
-                      key={linkedNpc}
-                      onClick={() =>
-                        componentToDisplay('characters', linkedNpc)
-                      }
-                      sx={{
-                        cursor: 'pointer',
-                        backgroundColor:
-                          index === selectedIndex ? '#f5f5f5' : '',
-                        '&:hover': {
-                          backgroundColor: '#f5f5f5',
-                        },
-                      }}
-                    >
-                      <ListItemText
-                        primary={campaign.characters[linkedNpc].name}
-                        //primary={character.name}
-                      />
-                      <ListItemIcon
-                        onClick={() => {
-                          alert(
-                            "Deleting Linked NPC's currently under development"
-                          );
-                        }}
-                      >
-                        <Delete />
-                      </ListItemIcon>
-                    </ListItem>
-                  )
-                )}
-                <ListItem
-                  onClick={() => alert('New links for NPCs is under progress')}
-                  sx={{
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: '#f5f5f5',
-                    },
-                  }}
-                >
-                  <ListItemText primary="new link" />
-                  <ListItemIcon>
-                    <AddCircleOutlineIcon />
-                  </ListItemIcon>
-                </ListItem>
-              </List>
-            </Box>
           </Stack>
         </Grid>
         <Grid container xs={12} sm={7} lg={3}>
@@ -187,33 +201,12 @@ const CampaignCitiesPage = (props) => {
             sx={{ marginTop: '1%', marginLeft: '5%' }}
           >
             <Typography variant="h4" align="center">
-              Linked Dungeons
-            </Typography>
-            <Box fullWidth sx={{ border: 1, height: '325px' }}>
-              <List fullWidth>
-                <ListItem
-                  sx={{
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: '#f5f5f5',
-                    },
-                  }}
-                  onClick={() => alert('Linking Dungeons is under progress')}
-                >
-                  <ListItemText primary="new link" />
-                  <ListItemIcon>
-                    <AddCircleOutlineIcon />
-                  </ListItemIcon>
-                </ListItem>
-              </List>
-            </Box>
-            <Typography variant="h4" align="center">
               Bio
             </Typography>
             <TextField
               fullWidth
               multiline
-              rows={13}
+              rows={30}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               onBlur={(e) => {
@@ -246,6 +239,9 @@ const CampaignCitiesPage = (props) => {
           </Stack>
         </Grid>
       </Grid>
+      {campaign.cities[selectedIndex].linkedCharacters.map((character) =>
+        LinkedCharactersJSX(character)
+      )}
     </>
   );
 };

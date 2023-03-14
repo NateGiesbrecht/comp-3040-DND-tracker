@@ -34,8 +34,8 @@ export const campaigns = [
         name: 'Jack',
         avatar:
           'https://i.pinimg.com/736x/ab/95/ef/ab95efe44a2264082c36712850487544.jpg',
-        linkedCharacters: [],
-        linkedCities: [],
+        linkedCharacters: [5],
+        linkedCities: [2],
         bio: 'Jack is a lanky human with short, curly hair and a mischievous grin.',
         story:
           'He lives in the small town of Blinko and works as a bard, traveling from town to town to perform for audiences. Jack is a charismatic and charming individual, always able to make people laugh with his jokes and stories. He has a close relationship with his brother Karlo, and the two often send each other letters and gifts.',
@@ -67,8 +67,8 @@ export const campaigns = [
         name: 'karlo',
         avatar:
           'https://pbs.twimg.com/media/EOe9xKwU8AIjfMC?format=jpg&name=4096x4096',
-        linkedCharacters: [],
-        linkedCities: [],
+        linkedCharacters: [2],
+        linkedCities: [1],
         bio: 'Karlo is a rugged dwarf with a thick beard and piercing brown eyes.',
         story:
           'He lives in the city of Stormhelm and works as a miner in the nearby mountains. Karlo is a tough and stubborn individual, but he has a deep love for his younger brother Jack. Despite their differences, the two brothers remain close and would do anything for each other.',
@@ -93,7 +93,7 @@ export const campaigns = [
         bio: "Stormhelm is a fortified city nestled in the midst of towering mountains and surrounded by dense forests. The city's walls are made of solid stone and are manned by well-trained soldiers armed with the latest weapons and tactics. Despite its warlike appearance, Stormhelm is a center of culture and learning, with libraries and academies that rival those of the greatest cities in the world.",
         avatar:
           'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f5ab51c-73d8-4949-9282-9e2c1c5b565e/daryx9b-ac73b464-e1c4-4b07-bc82-55388080f1c8.png/v1/fill/w_1024,h_767,q_80,strp/rabanastre___dnd_city_map_by_madwing_daryx9b-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzY3IiwicGF0aCI6IlwvZlwvNWY1YWI1MWMtNzNkOC00OTQ5LTkyODItOWUyYzFjNWI1NjVlXC9kYXJ5eDliLWFjNzNiNDY0LWUxYzQtNGIwNy1iYzgyLTU1Mzg4MDgwZjFjOC5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.TLlvx5ZxlZDLvR532fmwK1hkAn23cNavyUD3oj9ewiM',
-        linkedCharacters: [],
+        linkedCharacters: [5],
       },
       {
         id: 2,
@@ -103,7 +103,7 @@ export const campaigns = [
         bio: "Blinko Town is a small, isolated settlement on the edge of a vast desert. The town's buildings are made of adobe and sandstone, and the streets are lined with palm trees and cacti. Despite its remote location, Blinko Town is a hub of activity, with traders and travelers from all over the world passing through on their way to distant lands.",
         avatar:
           'https://i0.wp.com/www.fantasticmaps.com/wp-content/uploads/2012/02/redwallwebres-1.jpg?resize=640%2C828',
-        linkedCharacters: [],
+        linkedCharacters: [2],
       },
       {
         id: 3,
