@@ -47,7 +47,7 @@ const CampaignCitiesPage = (props) => {
   const LinkedCharactersJSX = (characterToDisplay) => {
     return (
       <>
-        <Divider sx={{ marginTop: '5%' }} />
+        <Divider />
         <Grid container spacing={1}>
           <Grid xs={12} lg={2}>
             <Grid item xs={12} sx={{ px: 2 }}></Grid>
@@ -94,11 +94,7 @@ const CampaignCitiesPage = (props) => {
                 fullWidth
                 multiline
                 rows={30}
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                onBlur={(e) => {
-                  handleOnBlur(e, 'bio');
-                }}
+                value={campaign.characters[characterToDisplay].bio}
               />
             </Stack>
           </Grid>
@@ -113,11 +109,7 @@ const CampaignCitiesPage = (props) => {
                 multiline
                 rows={30}
                 sx={{ marginTop: '0%' }}
-                value={story}
-                onChange={(e) => setStory(e.target.value)}
-                onBlur={(e) => {
-                  handleOnBlur(e, 'world');
-                }}
+                value={campaign.characters[characterToDisplay].story}
               />
             </Stack>
           </Grid>
@@ -239,6 +231,11 @@ const CampaignCitiesPage = (props) => {
           </Stack>
         </Grid>
       </Grid>
+      {campaign.cities[selectedIndex].linkedCharacters.length && (
+        <Typography sx={{ marginTop: '5%' }} variant="h4" align="center">
+          Linked Characters
+        </Typography>
+      )}
       {campaign.cities[selectedIndex].linkedCharacters.map((character) =>
         LinkedCharactersJSX(character)
       )}
