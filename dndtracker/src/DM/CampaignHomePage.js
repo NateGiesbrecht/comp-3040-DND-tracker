@@ -152,11 +152,13 @@ export const CampaignHomePage = () => {
       </Drawer>
 
       <IconButton
+        sx={{ position: 'fixed' }}
         onClick={() => {
           setDrawerOpen(true);
         }}
-        size="large"
+        size="med"
       >
+        <p>MENU</p>
         <ReorderIcon />
       </IconButton>
       <Typography variant="h1" align="center">
