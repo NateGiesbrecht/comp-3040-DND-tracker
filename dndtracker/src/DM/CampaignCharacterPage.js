@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   Typography,
@@ -137,31 +138,31 @@ const CampaignCharacterPage = (props) => {
                   (linkedNpc, index) => (
                     <ListItem
                       key={linkedNpc}
-                      onClick={() => handleItemClick(linkedNpc)}
-                      sx={{
-                        cursor: 'pointer',
-                        backgroundColor:
-                          index === selectedIndex ? '#f5f5f5' : '',
-                        '&:hover': {
-                          backgroundColor: '#f5f5f5',
-                        },
-                      }}
+                      //onClick={() => handleItemClick(linkedNpc)}
+                      // sx={{
+                      //   cursor: 'pointer',
+                      //   backgroundColor:
+                      //     index === selectedIndex ? '#f5f5f5' : '',
+                      //   '&:hover': {
+                      //     backgroundColor: '#f5f5f5',
+                      //   },
+                      // }}
                     >
                       <ListItemText
                         primary={campaign.characters[linkedNpc].name}
                         //primary={character.name}
                       />
-                      <ListItemIcon
+                      {/* <ListItemIcon
                       // onClick={() => {
                       //   handleClickDeleteNote(index);
                       // }}
                       >
                         <Delete />
-                      </ListItemIcon>
+                      </ListItemIcon> */}
                     </ListItem>
                   )
                 )}
-                <ListItem
+                {/* <ListItem
                   onClick={() => alert('New Links for NPCS is under progress')}
                   sx={{
                     cursor: 'pointer',
@@ -174,7 +175,7 @@ const CampaignCharacterPage = (props) => {
                   <ListItemIcon>
                     <AddCircleOutlineIcon />
                   </ListItemIcon>
-                </ListItem>
+                </ListItem> */}
               </List>
             </Box>
           </Stack>
@@ -194,28 +195,26 @@ const CampaignCharacterPage = (props) => {
                   (linkedCity, index) => (
                     <ListItem
                       key={linkedCity}
-                      onClick={() => {
-                        componentToDisplay('cities', linkedCity);
-                      }}
-                      sx={{
-                        cursor: 'pointer',
-                        backgroundColor:
-                          index === selectedIndex ? '#f5f5f5' : '',
-                        '&:hover': {
-                          backgroundColor: '#f5f5f5',
-                        },
-                      }}
+                      // onClick={() => {
+                      //   componentToDisplay('cities', linkedCity);
+                      // }}
+                      // sx={{
+                      //   cursor: 'pointer',
+                      //   backgroundColor:
+                      //     index === selectedIndex ? '#f5f5f5' : '',
+                      //   '&:hover': {
+                      //     backgroundColor: '#f5f5f5',
+                      //   },
+                      // }}
                     >
                       <ListItemText
                         primary={campaign.cities[linkedCity].name}
                       />
-                      <ListItemIcon>
-                        <Delete />
-                      </ListItemIcon>
+                      <ListItemIcon>{/* <Delete /> */}</ListItemIcon>
                     </ListItem>
                   )
                 )}
-                <ListItem
+                {/* <ListItem
                   onClick={() =>
                     alert('New Links for cities/dungeons is under progress')
                   }
@@ -230,7 +229,7 @@ const CampaignCharacterPage = (props) => {
                   <ListItemIcon>
                     <AddCircleOutlineIcon />
                   </ListItemIcon>
-                </ListItem>
+                </ListItem> */}
               </List>
             </Box>
             <Typography variant="h4" align="center">

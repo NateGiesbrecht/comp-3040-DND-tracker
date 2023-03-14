@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from 'react';
 import {
   Typography,
@@ -54,31 +56,31 @@ const CampaignCitiesPage = (props) => {
               {campaign.cities.map((city, index) => (
                 <ListItem
                   key={city.id}
-                  onClick={() => handleItemClick(index)}
-                  sx={{
-                    cursor: 'pointer',
-                    backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
-                    '&:hover': {
-                      backgroundColor: '#f5f5f5',
-                    },
-                  }}
+                  // onClick={() => handleItemClick(index)}
+                  // sx={{
+                  //   cursor: 'pointer',
+                  //   backgroundColor: index === selectedIndex ? '#f5f5f5' : '',
+                  //   '&:hover': {
+                  //     backgroundColor: '#f5f5f5',
+                  //   },
+                  // }}
                 >
                   <ListItemText
                     primary={city.name}
                     //primary={character.name}
                   />
                   <ListItemIcon
-                    onClick={() => {
-                      alert(
-                        'Deleting Linked Dungeons currently under development'
-                      );
-                    }}
+                  // onClick={() => {
+                  //   alert(
+                  //     'Deleting Linked Dungeons currently under development'
+                  //   );
+                  // }}
                   >
-                    <Delete />
+                    {/* <Delete /> */}
                   </ListItemIcon>
                 </ListItem>
               ))}
-              <ListItem
+              {/* <ListItem
                 onClick={() => {
                   alert('Adding new cities is currently under development');
                 }}
@@ -93,7 +95,7 @@ const CampaignCitiesPage = (props) => {
                 <ListItemIcon>
                   <AddCircleOutlineIcon />
                 </ListItemIcon>
-              </ListItem>
+              </ListItem> */}
             </List>
           </Grid>
         </Grid>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   List,
@@ -138,7 +139,7 @@ export const PlayerNotes = () => {
       </Typography>
 
       <Container>
-        <TextField
+        {/* <TextField
           fullWidth
           label="Search"
           sx={{ marginBottom: '1%' }}
@@ -159,7 +160,7 @@ export const PlayerNotes = () => {
               </>
             ),
           }}
-        />
+        /> */}
 
         <Button
           component={Link}
