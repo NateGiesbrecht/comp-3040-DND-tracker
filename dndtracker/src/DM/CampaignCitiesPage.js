@@ -93,7 +93,7 @@ const CampaignCitiesPage = (props) => {
               <TextField
                 fullWidth
                 multiline
-                rows={30}
+                rows={20}
                 value={campaign.characters[characterToDisplay].bio}
               />
             </Stack>
@@ -107,7 +107,7 @@ const CampaignCitiesPage = (props) => {
               <TextField
                 fullWidth
                 multiline
-                rows={30}
+                rows={20}
                 sx={{ marginTop: '0%' }}
                 value={campaign.characters[characterToDisplay].story}
               />
@@ -198,7 +198,7 @@ const CampaignCitiesPage = (props) => {
             <TextField
               fullWidth
               multiline
-              rows={30}
+              rows={20}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               onBlur={(e) => {
@@ -220,7 +220,7 @@ const CampaignCitiesPage = (props) => {
             <TextField
               fullWidth
               multiline
-              rows={30}
+              rows={20}
               sx={{ marginTop: '0%', marginRight: '5%' }}
               value={story}
               onChange={(e) => setStory(e.target.value)}
