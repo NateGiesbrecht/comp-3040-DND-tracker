@@ -126,7 +126,7 @@ const CampaignCitiesPage = (props) => {
               </Stack>
             </Box>
             <Typography variant="h4" align="center">
-              Linked NPCs
+              NPCs
             </Typography>
             <Box fullWidth sx={{ border: 1, height: '325px' }}>
               <List fullWidth>
