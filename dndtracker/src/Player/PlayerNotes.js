@@ -11,6 +11,7 @@ import {
   Grid,
   ListItemIcon,
   IconButton,
+  ButtonGroup,
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -27,6 +28,8 @@ export const PlayerNotes = () => {
   const [openInventory, setOpenInventory] = useState(false);
   const [search, setSearch] = useState('');
   const [matchedIndexes, setMatchedIndexes] = useState([]);
+  const [tag, setTag] = useState('');
+  const tags = ['fight', 'npc interaction', 'loot', 'quest', 'other'];
 
   function useForceUpdate() {
     const [, setValue] = useState(0); // integer state
@@ -127,6 +130,23 @@ export const PlayerNotes = () => {
     setSearch('');
     setMatchedIndexes([]);
   };
+
+  const handleSetTag = (tagToSet) => {
+    setTag(tagToSet);
+    console.log('Searching for: ', search);
+    console.log('inside : ', character.notes);
+    const matches = [];
+    for (let i = 0; i < character.notes.length; i++) {
+      console.log(character.notes[i].tags);
+      console.log(character.notes[i].tags.includes(tagToSet.toLowerCase()));
+      if (character.notes[i].tags.includes(tagToSet.toLowerCase())) {
+        console.log('here');
+        matches.push(i);
+      }
+    }
+    console.log('matches', matches);
+    setMatchedIndexes([...matches]);
+  };
   return (
     <>
       <Inventory
@@ -179,6 +199,43 @@ export const PlayerNotes = () => {
         >
           Inventory
         </Button>
+        <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <Button
+            onClick={() => {
+              handleSetTag('fight');
+            }}
+          >
+            fight
+          </Button>
+          <Button
+            onClick={() => {
+              handleSetTag('loot');
+            }}
+          >
+            Loot
+          </Button>
+          <Button
+            onClick={() => {
+              handleSetTag('npc interaction');
+            }}
+          >
+            NPC Interaction
+          </Button>
+          <Button
+            onClick={() => {
+              handleSetTag('quest');
+            }}
+          >
+            Quest
+          </Button>
+          <Button
+            onClick={() => {
+              handleSetTag('other');
+            }}
+          >
+            Other
+          </Button>
+        </ButtonGroup>
         <Grid container>
           <Grid item xs={4}>
             <Container
